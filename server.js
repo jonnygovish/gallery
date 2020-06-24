@@ -10,8 +10,8 @@ let image = require('./routes/image');
 // connecting the database
 let mongodb_url = 'mongodb://localhost/';
 let dbName = 'dark';
-const CONNECTION_URI = process.env.MONGODB_URI || `${mongodb_url}${dbName}`
-mongoose.connect(CONNECTION_URI, (err)=>{
+const MONGODB_URI = process.env.MONGODB_URI || `${mongodb_url}${dbName}`
+mongoose.connect(MONGODB_URI, (err)=>{
     if (err) console.log(err)
 });
 
