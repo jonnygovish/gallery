@@ -1,8 +1,8 @@
 var config = {}
 
 config.mongoURI = {
-    production: 'mongodb://localhost/dark',
-    development: 'mongodb://localhost/dark',
-    test: 'mongodb://localhost/dark-test'
+    production: 'mongodb+srv://<USERNAME>:<PASSWORD>@gallery.wc344.mongodb.net/darkroom?retryWrites=true&w=majority',
+    development: 'mongodb+srv://<USERNAME>:<PASSWORD>@gallery.wc344.mongodb.net/darkroom-dev?retryWrites=true&w=majority',
+    test: 'mongodb+srv://<USERNAME>:<PASSWORD>@gallery.wc344.mongodb.net/darkroom-test?retryWrites=true&w=majority',
 }
 module.exports = config;
