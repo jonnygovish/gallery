@@ -1,17 +1,20 @@
+#!/usr/bin/env groovy
 pipeline {
     agent any
-
+    tools {
+        nodejs "latest"
+        }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building..'
+                sh 'npm install'
             }
         }
-        stage('Test') {
+        stage('test') {
             steps {
-                echo 'Testing..'
+                sh 'npm test'
             }
-        }
+         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
