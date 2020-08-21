@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Build') {
             steps {
@@ -20,7 +20,7 @@ pipeline {
         stage('Deploy to Heroku') {
           steps {
             withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
-              sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/radiant-harbor-50716.git master'
+              sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/morning-beach-50962.git master'
             }
           }
         }
