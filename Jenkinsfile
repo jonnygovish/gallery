@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy to Heroku') {
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
-                sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/powerful-tor-46783.git  HEAD:master'                
+                sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/limitless-meadow-81845.git HEAD:master'                
                 }
             } 
         }
