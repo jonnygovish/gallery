@@ -21,7 +21,9 @@ pipeline {
         }
         stage('Deploy to Heroku') {
             steps {
-              sh 'git push heroku master'
+                withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
+                sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/powerful-tor-46783.git  HEAD:master'                
+                }
             } 
         }
     }
