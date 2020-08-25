@@ -19,10 +19,12 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-       stage('Deploy to Heroku') {
-            steps {
-                sh 'git push https://Sitienei:b7b35d6e-7ed7-4210-bb2b-a51ab79514dc@git.heroku.com/gentle-hollows-39973.git master'
-          }  
+        stage('Deploy to Heroku') {
+          steps {
+            withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
+              sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/gentle-hollows-39973.git master'
+            }
+          }
         }
     }
 }
