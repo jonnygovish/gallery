@@ -22,13 +22,13 @@ pipeline {
         stage('Add remote') {
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
-                sh 'git remote add  https://${HEROKU_CREDENTIALS}@git.heroku.com/limitless-meadow-81845.git'                
+                sh 'git remote add heroku  https://${HEROKU_CREDENTIALS}@git.heroku.com/limitless-meadow-81845.git'                
                 }
             } 
         }
         stage('Deploy to Heroku') {
             steps {
-                sh 'git push heroku master'                
+                sh 'git push heroku HEAD:master'                
                 }
             } 
         }
