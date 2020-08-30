@@ -1,10 +1,10 @@
 {
   "name": "dark-room",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha --exit",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,11 +20,14 @@
   },
   "devDependencies": {
     "chai": "^3.2.0",
-    "chai-http": "^1.0.0",
+    "chai-http": "^4.3.0",
     "mocha": "^8.1.1"
   },
   "directories": {
     "test": "test"
+  },
+  "engines": {
+    "node": "13.x"
   },
   "repository": {
     "type": "git",
@@ -36,6 +39,3 @@
   "homepage": "https://github.com/Akarad/gallery#readme",
   "description": ""
 }
-"engines": {
-  "node": "13.x"
-},
