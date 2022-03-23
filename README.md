@@ -90,7 +90,8 @@ APPENDIX: How to apply the Apache License to your work.
   file or class name and description of purpose be included on the
   same "printed page" as the copyright notice for easier
   identification within third-party archives.
-Copyright (c) 2021 Nyaboke Marasi.
+
+# Copyright (c) 2021 Nyaboke Marasi.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
