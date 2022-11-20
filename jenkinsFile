@@ -1,0 +1,11 @@
+pipelin{
+    agent any
+
+    stages{
+        stage('cloning the project from github'){
+            steps{
+                git 'https://github.com/Mertangy/gallery'
+            }
+        }
+    }
+}
