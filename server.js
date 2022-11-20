@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const mongoose = require('mongoose');
 const path = require('path');
 
@@ -8,7 +9,17 @@ let index = require('./routes/index');
 let image = require('./routes/image');
 
 // connecting the database
-let mongodb_url = 'mongodb://localhost:27017/';
+
+//const { MongoClient, ServerApiVersion } = require('mongodb');
+//const uri = "mongodb+srv://mertangy:IwasBinZiani$84@gallery.cj6v9ym.mongodb.net/?retryWrites=true&w=majority";
+//const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+let mongodb_url = 'mongodb+srv://mertangy:IwasBinZiani$84@gallery.cj6v9ym.mongodb.net/?retryWrites=true&w=majority';
 let dbName = 'darkroom';
 mongoose.connect(`${mongodb_url}${dbName}`,{ useNewUrlParser: true , useUnifiedTopology: true }, (err)=>{
     if (err) console.log(err)
