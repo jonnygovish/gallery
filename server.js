@@ -13,14 +13,25 @@ const app = express();
 
 // connecting the database
 
-const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
-    if (err) {
-        console.log(err)
-    }else{
-        console.log(`Connected to Database: ${MONGODB_URI}`)
-    }
-});
+let mongodb_url =
+"mongodb+srv://mishael:WlWSovrMZhy1z7kv@gallery.wc344.mongodb.net/darkroom?retryWrites=true";
+let dbName = "darkroom";
+mongoose.connect(
+  `${mongodb_url}${dbName}`,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    if (err) console.log(err);
+  }
+);
+
+// const MONGODB_URI = "mongodb+srv://mishael:WlWSovrMZhy1z7kv@gallery.wc344.mongodb.net/darkroom?retryWrites=true"
+// mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
+//     if (err) {
+//         console.log(err)
+//     }else{
+//         console.log(`Connected to Database: ${MONGODB_URI}`)
+//     }
+// });
 
 // test if the database has connected successfully
 // let db = mongoose.connection;
