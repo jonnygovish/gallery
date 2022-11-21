@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 describe('Photos', function(){
 
 
-    it('should list ALL photos on / GET', function(done){
+    it('should list ALL photos on / GET', async function(){
         this.timeout(60000);
         chai.request(server)
         .get('/')
