@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+    tools {
+     nodejs "nodejs"
+    }
+    stages{
+        stage('clone repository'){
+            steps {
+                git 'https://github.com/MishaelRatemo/gallery-devops.git'
+            }
+        }
+        stage ('Build project'){
+            steps{
+                sh 'npm install'
+            }
+        }
+        stage('Tests'){
+            steps{
+                sh 'npm test'
+            }
+        }
+        stage('Deploy to Herokuu'){
+            steps{
+               withCredentials([usernameColonPassword(credentialsId: 'herokuu',variable: 'HEROKU_CREDENTIALS')]){
+                   sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/gallery-devops.git master'
+               } 
+            }
+        }
+      
+    }
+}
