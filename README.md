@@ -1,1 +1,3 @@
-##Gallery DevOps
+# Gallery DevOps
+## Author : Mishael Ratemo
+
