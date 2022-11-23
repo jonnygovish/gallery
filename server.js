@@ -14,7 +14,7 @@ const app = express();
 // connecting the database
 
 let mongodb_url =
-"mongodb+srv://mishael:WlWSovrMZhy1z7kv@gallery.wc344.mongodb.net/darkroom?retryWrites=true";
+"mongodb+srv://mishael:WlWSovrMZhy1z7kv@testcluster.ibjdttk.mongodb.net/?retryWrites=true&w=majority";
 let dbName = "darkroom";
 mongoose.connect(
   `${mongodb_url}${dbName}`,
@@ -33,11 +33,11 @@ mongoose.connect(
 //     }
 // });
 
-// test if the database has connected successfully
-// let db = mongoose.connection;
-// db.once('open', ()=>{
-//     console.log('Database connected successfully')
-// })
+//test if the database has connected successfully
+let db = mongoose.connection;
+db.once('open', ()=>{
+    console.log('Database connected successfully')
+})
 
 
 
