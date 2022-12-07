@@ -23,10 +23,14 @@ pipeline{
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )])
                 {
-                    sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/gallary-devops.git master'
+                    sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/gallery-devops.git master'
                 }
-            }
-    
-           }    
+            }    
+        }
+        post {
+            always{
+            slackSend color: "good", message:  "Deployed ${BUILD_ID}"
+        }
+}    
     }
 }
