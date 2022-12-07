@@ -9,5 +9,10 @@ pipeline{
                 git 'https://github.com/MishaelRatemo/gallery-devops'
             }
         }
+        stage ('Project Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
     }
 }
