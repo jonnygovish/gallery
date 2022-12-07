@@ -3,10 +3,7 @@ pipeline{
     tools{
         nodejs "nodejs"
     }
-    parameters{
-        string(deployed_link: 'https://gallery-devops.herokuapp.com/')
-    
-    }
+
     stages{
         stage('Clone Repository'){
             steps{
@@ -32,7 +29,7 @@ pipeline{
             }
             post {
             always{
-                slackSend color: "good", message:  "Deployed ${BUILD_ID}", attachments: "Deployed Link 'https://gallery-devops.herokuapp.com/'"                
+                slackSend color: "good", message:  "Deployed ${BUILD_ID}", attachments: "Deployed Link 'https://gallery-devops.herokuapp.com/"                
             }
             }    
         }
