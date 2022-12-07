@@ -32,7 +32,7 @@ pipeline{
             }
             post {
             always{
-                slackSend color: "good", message:  "Deployed ${BUILD_ID}", attachment: "Deployed Link 'https://gallery-devops.herokuapp.com/'"                
+                slackSend color: "good", message:  "Deployed ${BUILD_ID}", attachments: "Deployed Link 'https://gallery-devops.herokuapp.com/'"                
             }
             }    
         }
