@@ -26,5 +26,7 @@ pipeline{
                     sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/gallary-devops.git master'
                 }
             }
-        }
+    
+           }    
+    }
 }
