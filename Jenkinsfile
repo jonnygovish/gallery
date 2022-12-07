@@ -34,7 +34,6 @@ pipeline{
             always{
                 slackSend color: "good", message:  "Deployed ${BUILD_ID}", url: "Deployed Link 'https://gallery-devops.herokuapp.com/'"                
             }
-            echo "Link is ${param.https://gallery-devops.herokuapp.com/}"
             }    
         }
             
