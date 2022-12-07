@@ -25,12 +25,13 @@ pipeline{
                 {
                     sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/gallery-devops.git master'
                 }
-            }    
-        }
-        post {
+            }
+            post {
             always{
             slackSend color: "good", message:  "Deployed ${BUILD_ID}"
+            }
+            }    
         }
-}    
+            
     }
 }
