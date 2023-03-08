@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    
+stages {
+        stage('Start') {
+            steps {
+                echo 'Build is starting'
+            }
+        }
+        
+        stage('Clone github repository') {
+            steps {
+                git url: 'https://github.com/mngaruiya/Milestones.git', branch: 'master'
+            }
+        }
+        
+        stage('Install dependencies') {
+            steps {
+                bat 'npm install'
+            }
+        }  
+        
+        stage('Install mocha'){
+            steps {
+                bat 'npm i mocha'
+                
+            }
+        }
+       
+       stage('Tests'){
+            steps {
+                bat 'npm run test'
+                
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                bat 'curl -X POST https://api.render.com/deploy/srv-cg2c62vdvk4ronoipspg?key=P2K1-_KxG9s'
+            }
+        }
+       
+    stage('End') {
+            steps {
+                echo 'Build is finished'
+       
+            }
+        }  
+    }
+}
