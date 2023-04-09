@@ -1,0 +1,4 @@
+Requirements
+-Your pipeline should trigger automatically whenever you push a new change to your repository. 
+-It should make sure that all required software is available.
+-It should deploy to Heroku.
