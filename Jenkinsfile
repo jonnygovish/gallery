@@ -22,9 +22,13 @@ pipeline {
                   }
             }
         }
+        stage('Slack notification') {
+            steps {
+                slackSend channel: '#maryip1', message: 'Successfully deployed'
+            }
+        }
     }
     }            
-
 
 
 
