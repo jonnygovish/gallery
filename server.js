@@ -14,13 +14,13 @@ const app = express();
 // connecting the database
 let mongodb_url='mongodb+srv://ombongiMN:WlC3iWygB1cIFrKh@cluster0.p3mvbu5.mongodb.net/?retryWrites=true&w=majority'
 let dbName='cluster0'
-mongoose.connect(`${mongodb_url}${dbName}`{ useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
+mongoose.connect(`${mongodb_url}${dbName}`){ useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
     if (err) {
         console.log(err)
     }else{
         console.log(`Connected to Database: ${mongodb_url}`)
     }
-});
+};
 
 // test if the database has connected successfully
 // let db = mongoose.connection;
