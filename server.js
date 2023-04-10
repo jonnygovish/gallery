@@ -18,7 +18,7 @@ mongoose.connect(`${mongodb_url}${dbName}`{ useNewUrlParser: true, useUnifiedTop
     if (err) {
         console.log(err)
     }else{
-        console.log(`Connected to Database: ${MONGODB_URI}`)
+        console.log(`Connected to Database: ${mongodb_url}`)
     }
 });
 
