@@ -1,3 +1,4 @@
+
 var config = {}
 
 // Update to have your correct username and password
@@ -6,4 +7,6 @@ config.mongoURI = {
     development: 'mongodb+srv://bensongathu23:0703446950Bb@gallery.wc344.mongodb.net/darkroom-dev?retryWrites=true&w=majority',
     test: 'mongodb+srv://bensongathu23:0703446950Bb@gallery.wc344.mongodb.net/darkroom-test?retryWrites=true&w=majority',
 }
+
 module.exports = config;
+
