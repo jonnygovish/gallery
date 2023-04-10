@@ -16,7 +16,7 @@ let mongodb_url='mongodb+srv://ombongiMN:WlC3iWygB1cIFrKh@cluster0.p3mvbu5.mongo
 let dbName='cluster0'
 mongoose.connect(`${mongodb_url}${dbName}`), { 
     useNewUrlParser: true, 
-    useUnifiedTopology: true} (err) => {
+    useUnifiedTopology: true}, (err) => {
     if (err) {
         console.log(err)
     }else{
