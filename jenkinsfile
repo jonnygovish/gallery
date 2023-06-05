@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('Hello') {
+            steps {
+                echo "Hello world"
+                    }
+            }
+        }
+    post{
+        always{
+            slackSend( channel: "#Jenkins", token: "slack_webhook token", color: "good", message: "Test Email")
+        }
+    }
+}
