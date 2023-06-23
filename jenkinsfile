@@ -1,0 +1,24 @@
+pipeline { 
+    agent any
+    
+    tools { 
+        gradle "Gradle-6"
+    }
+    
+    stages { 
+        stage('Clone repository') {
+          steps { 
+            git 'https://github.com/cynthia7125/gallery.git'
+          }
+        }
+        
+        stage('integration to slack'){
+            steps {
+                slackSend message: "Build number ${BUILD_NUMBER} | Job Name - ${JENKINS_URL}"
+                slackSend color: 'good', message: 'This is awesome!'
+            }
+        }
+    }
+}
+
+
