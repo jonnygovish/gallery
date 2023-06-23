@@ -15,7 +15,7 @@ pipeline {
         stage('integration to slack'){
             steps {
                 slackSend message: "Build number ${BUILD_NUMBER} | Job Name - ${JENKINS_URL}"
-                slackSend color: 'good', message: 'This is awesome!'
+                slackSend color: 'good', message: 'Okay, this is awesome!'
             }
         }
     }
