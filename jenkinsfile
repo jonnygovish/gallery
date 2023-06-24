@@ -1,6 +1,5 @@
 pipeline { 
     agent any
-    
     tools { 
         gradle "Gradle-6"
     }
