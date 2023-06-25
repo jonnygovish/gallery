@@ -32,13 +32,18 @@ pipeline {
         }
       }
       }
+      stage ('slack integration') {
+        steps {
+          slackSend channel: '#general', message: 'successful app deployment on heroku'
+        }
+      }
   }
   post {
     success {
     echo "One or more steps need to be included within each condition's block"
     }
     failure {
-    echo "One or more steps need to be included within each condition's block"
+    echo "One or more steps need to be included within each condition's block."
     }
   }
 }
