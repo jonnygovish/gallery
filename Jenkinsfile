@@ -26,9 +26,12 @@ pipeline {
       stage('deploy') {
       steps {
         echo 'running deployment to heroku'
-        withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
-        sh "git push https://${HEROKU_CREDENTIALS}@git.heroku.com/stormy-ocean-69197.git master"
+        withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS')])
+        {
+          sh "git push https://${HEROKU_CREDENTIALS}@git.heroku.com/stormy-ocean-69197.git master"
+        }
       }
       }
   }
 }
+
