@@ -58,7 +58,7 @@ pipeline {
     failure {
       echo "One or more steps need to be included within each condition's block."
 
-       emailext attachLog: true,
+      emailext attachLog: true,
                 body:
                     """
                     <p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p>
@@ -69,8 +69,7 @@ pipeline {
                       <p><i>(Build log is attached.)</i></p>
                     """,
                 subject: "Status: FAILURE -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",
-                to: 'iladho.galgallo@student.moringaschool.com
-'
+                to: 'iladho.galgallo@student.moringaschool.com'
     }
   }
 }
