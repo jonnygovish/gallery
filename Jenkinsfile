@@ -1,8 +1,12 @@
+old ones
+
+
 pipeline {
   agent any
   tools {
     nodejs 'NodeJS'
   }
+
   stages {
     stage('clone repo') {
       steps {
@@ -31,23 +35,19 @@ pipeline {
         }
       }
       }
-      stage ('slack integration') {
       stage('slack integration') {
         steps {
-          slackSend channel: '#general', message: 'successful app deployment on heroku'
           slackSend channel: '#general', message: "Successful Application deployment on heroku.Build number: ${env.BUILD_NUMBER}\n here is the link to the application:https://stormy-ocean-69197-ecce6bd1bd80.herokuapp.com/"
         }
       }
-      }
+  }
   post {
     success {
-    echo "One or more steps need to be included within each condition's block"
       echo "One or more steps need to be included within each condition's block"
-    }
-    failure {
-    echo "One or more steps need to be included within each condition's block."
-      echo "One or more steps need to be included within each condition's block."
-    }
-  }
-  }
 
+      failure {
+        echo "One or more steps need to be included within each condition's block."
+      }
+    }
+  }
+}
