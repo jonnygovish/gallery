@@ -1,6 +1,3 @@
-old ones
-
-
 pipeline {
   agent any
   tools {
@@ -50,4 +47,5 @@ pipeline {
       }
     }
   }
+}
 }
