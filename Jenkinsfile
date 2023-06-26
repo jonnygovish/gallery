@@ -41,9 +41,36 @@ pipeline {
   post {
     success {
       echo "One or more steps need to be included within each condition's block"
+
+      emailext attachLog: true,
+                body:
+                    """
+                    <p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p>
+                    <p>
+                    View console output at
+                    "<a href="${env.BUILD_URL}">${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"
+                    </p>
+                      <p><i>(Build log is attached.)</i></p>
+                    """,
+                subject: "Status: 'SUCCESS' -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",
+                to: 'iladho.galgallo@student.moringaschool.com'
     }
     failure {
       echo "One or more steps need to be included within each condition's block."
+
+       emailext attachLog: true,
+                body:
+                    """
+                    <p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p>
+                    <p>
+                    View console output at
+                    "<a href="${env.BUILD_URL}">${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"
+                    </p>
+                      <p><i>(Build log is attached.)</i></p>
+                    """,
+                subject: "Status: FAILURE -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",
+                to: 'iladho.galgallo@student.moringaschool.com
+'
     }
   }
 }
