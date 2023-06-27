@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+   
+
+    environment {
+        VERSION_NUMBER = '1.0'
+    }
+
+    stages {
+        stage('Clone repository') {
+            steps {
+                echo 'Cloning repository'
+                git 'https://github.com/kipkoechAllan/gallery.git' //Specify your forked git repo
+            }
+        }
+        stage('Build ') {
+            steps {
+                nodejs(nodeJSInstallationName: 'node') {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Test ') {
+            steps {
+                nodejs(nodeJSInstallationName: 'node') {
+                    sh 'npm test'
+                }
+            }
+        }        
+        stage('slack'){
+            steps{
+                slackSend channel: 'allan_ip1', message: 'Deployment successful! Build ID: ${BUILD_NUMBER}'
+            }
+        }
+    }
+    post{
+        failure{
+            emailext body: 'Failure', subject: 'Jenkins', to: 'koecheallan'
+        }
+    }
+}
