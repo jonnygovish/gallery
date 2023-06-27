@@ -33,7 +33,7 @@ pipeline
             {
                 // Deploy application to Render
                 echo 'Deploying application...'
-                sh 'curl -X POST https://api.render.com/deploy/srv-cicm87t9aq03rjn463ng?key=nLGpsIAltrA&ref=84c730cf6c6675b48e2fb6e67d1d6b5a4f2fa961'
+                sh 'curl -X POST https://api.render.com/deploy/srv-cidi6d6nqqlb62mi8ki0?key=ZESMZqWFOUo&ref=84c730cf6c6675b48e2fb6e67d1d6b5a4f2fa961'
             }
         }
     }
