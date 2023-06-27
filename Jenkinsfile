@@ -2,6 +2,11 @@ pipeline
 {
     agent any
 
+    environment 
+    {
+        APP_UPLOAD_LINK = "https://gallery-app-r15z.onrender.com/"
+    }
+
     tools
     {
         nodejs 'NodeJS'
@@ -60,7 +65,7 @@ pipeline
                 slackSend (
                     channel: 'saina_ip1',
                     color: 'good',
-                    message: 'Application Built, Tested and Deployed Successfully.'
+                    message: "Application: gallery-app. Build number: ${env.BUILD_NUMBER} Built, Tested and Deployed Successfully. Render Link: ${env.APP_UPLOAD_LINK}"
                 )
             }
         }
