@@ -27,6 +27,14 @@ pipeline
             }
         } 
 
+        stage('Run Tests') {
+            steps
+            {
+                echo 'Running tests'
+                sh 'npm test'
+            }
+        }
+
         stage('Deploy to Render') 
         {
             steps
@@ -37,4 +45,39 @@ pipeline
             }
         }
     }
+
+    post 
+    {
+        failure {
+            script
+            {
+                // Send email notification on build failure
+                sendEmail()
+            }
+        }
+    }
+}
+
+def sendEmail()
+{
+    def buildUser = env.BUILD_USER_FIRST_NAME ?: 'Unknown'
+    def buildCause = env.CAUSE ?: 'Unknown'
+    
+    emailext (
+        to: "devsainar@gmail.com",
+        subject: "Build Failure - ${env.JOB_NAME}",
+        body: """<p>Hi,</p>
+                <p>The build for ${env.JOB_NAME} has failed.</p>
+                <p>Build details:</p>
+                <ul>
+                    <li>Build number: ${env.BUILD_NUMBER}</li>
+                    <li>Build URL: ${env.BUILD_URL}</li>
+                    <li>Build user: ${buildUser}</li>
+                    <li>Build cause: ${buildCause}</li>
+                </ul>
+                <p>Please investigate and take necessary actions.</p>
+                <p>Best regards,</p>
+                <p>Your Jenkins Server</p>""",
+        attachLog: true
+    )
 }
