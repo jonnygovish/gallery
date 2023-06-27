@@ -16,7 +16,7 @@ pipeline
                 git 'https://github.com/digitalsaina/gallery-app.git'
             }
         }
-        
+
         stage('Build') 
         {
             steps
@@ -25,6 +25,6 @@ pipeline
                 echo 'Installing Dependencies...'
                 sh 'npm ci'
             }
-        }
+        } 
     }
 }
