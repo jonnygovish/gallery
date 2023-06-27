@@ -23,7 +23,7 @@ pipeline
             {
                 // Install Dependencies and Build
                 echo 'Installing Dependencies...'
-                sh 'npm ci'
+                sh 'npm ci' 
             }
         } 
     }
