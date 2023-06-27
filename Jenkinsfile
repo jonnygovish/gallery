@@ -52,6 +52,18 @@ pipeline
                 sh 'curl -X POST https://api.render.com/deploy/srv-cidi6d6nqqlb62mi8ki0?key=ZESMZqWFOUo&ref=84c730cf6c6675b48e2fb6e67d1d6b5a4f2fa961'
             }
         }
+
+        stage('Send Slack Notification')
+        {
+            steps
+            {
+                slackSend (
+                    channel: 'saina_ip1',
+                    color: 'good',
+                    message: 'Application Built, Tested and Deployed Successfully.'
+                )
+            }
+        }
     }
 
     post 
