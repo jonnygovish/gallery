@@ -4,7 +4,7 @@ pipeline
 
     environment 
     {
-        APP_UPLOAD_LINK = "https://gallery-app-r15z.onrender.com/",
+        APP_UPLOAD_LINK = "https://gallery-app-r15z.onrender.com/"
         GITHUB_REPO = "https://github.com/digitalsaina/gallery-app.git"
     }
 
