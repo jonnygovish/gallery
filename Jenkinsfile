@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    
+    environment {
+        // render executable directory to the PATH
+        PATH = "/snap/bin:$PATH" 
+    }
     tools {
         gradle "Gradle 8.3"
         nodejs '12.22.9' 
