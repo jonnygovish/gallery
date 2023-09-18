@@ -3,26 +3,27 @@ pipeline {
     
     tools {
         gradle "Gradle 8.3"
+        nodejs '12.22.9' 
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your code from the repository
+                // Checks code from the repository
                 checkout scm
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Install Node.js dependencies (You mentioned Gradle, so adjust as needed)
-                sh 'npm install' // Change this to Gradle commands if needed
+                // Installs npm dependencies
+                sh 'npm install'
             }
         }
 
         stage('Build the Project') {
             steps {
-                // Build your project (Using Gradle)
+                // Builds project (Using Gradle)
                 sh 'gradle build'
             }
         }
@@ -36,7 +37,7 @@ pipeline {
 
         stage('Deploy to Render') {
             steps {
-                // Use Render CLI or API to deploy your app
+                // Uses Render CLI or API to deploy  app
                 sh 'render deploy'
             }
         }
