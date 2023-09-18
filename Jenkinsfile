@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy to Render') {
             steps {
                 // Uses Render CLI or API to deploy  app
-                 sh '/usr/local/bin/render deploy --indir /Desktop/ProjectsMoringa/Project1/gallery'
+                 sh  '/snap/bin/render deploy --indir /Desktop/ProjectsMoringa/Project1/gallery'
             }
         }
     }
