@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy to Render') {
             steps {
                 // Uses Render CLI or API to deploy  app
-                sh 'render deploy'
+                sh '/snap/bin/render deploy'
             }
         }
     }
