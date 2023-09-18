@@ -38,12 +38,21 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+            steps {
+                // Run npm tests
+                sh 'npm test'
+            }
+        }
+
         stage('Deploy to Render') {
             steps {
                 // Uses Render CLI or API to deploy  app
                  sh  '/snap/bin/render deploy --indir /Desktop/ProjectsMoringa/Project1/gallery'
             }
         }
+
+        
     }
     
     post {
