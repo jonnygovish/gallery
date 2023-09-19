@@ -44,6 +44,16 @@ pipeline {
                 sh 'npm test'
             }
         }
+           stage('Deploy to Heroku') {
+            steps {
+                script {
+                    // Use the HEROKU_API_KEY credential
+                    withCredentials([string(credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY')]) {
+                       sh 'git push https://moringa:secretpassword@git.heroku.com/my-heroku-app.git master'
+
+                    }
+                }
+            }
 
         stage('Deploy to Render') {
             steps {
