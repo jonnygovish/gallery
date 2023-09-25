@@ -41,7 +41,8 @@ pipeline {
                     env.RENDER_BRANCH = 'master'
 
                     // Deploy to Render
-                    sh "/opt/homebrew/bin/render up --environment '${env.RENDER_ENVIRONMENT}' --service '${env.RENDER_SERVICE_NAME}' --branch '${env.RENDER_BRANCH}'"
+                    sh "/opt/homebrew/bin/render up"
+                    //sh "/opt/homebrew/bin/render up --environment '${env.RENDER_ENVIRONMENT}' --service '${env.RENDER_SERVICE_NAME}' --branch '${env.RENDER_BRANCH}'"
                 }
             }
         }
