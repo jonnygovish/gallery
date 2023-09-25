@@ -41,21 +41,15 @@ pipeline {
                     env.RENDER_ENVIRONMENT = 'development'
                     env.RENDER_BRANCH = 'master'
 
-                    // // Deploy to Render using Render CLI
-                    // sh """
-                    // render login --token "${RENDER_API_TOKEN}"
-                    // render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
-                    // """
-
                     // Deploy to Render using Render CLI
                     sh """
-                    /opt/homebrew/bin/render login --token "${RENDER_API_TOKEN}"
+                    /opt/homebrew/bin/render login "${RENDER_API_TOKEN}"
                     /opt/homebrew/bin/render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
                     """
                 }
             }
         }
-       
+
         stage('Send a Notification to Slack') {
             steps {
                 script {
