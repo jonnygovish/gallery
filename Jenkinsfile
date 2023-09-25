@@ -42,7 +42,7 @@ pipeline {
                     env.RENDER_BRANCH = 'master'
 
                     // Deploy to Render using Render CLI
-                    sh "/opt/homebrew/bin/render login --region \"${env.RENDER_API_TOKEN}\""
+                    sh "/opt/homebrew/bin/render config --token \"${env.RENDER_API_TOKEN}\""
                     sh "/opt/homebrew/bin/render up --environment \"${env.RENDER_ENVIRONMENT}\" --service \"${env.RENDER_SERVICE_NAME}\" --branch \"${env.RENDER_BRANCH}\""
                 }
             }
