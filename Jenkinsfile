@@ -1,7 +1,10 @@
 pipeline {
     agent any
 
-    tools {nodejs "NodeJS 20.7.0"}
+    tools {
+        nodejs "NodeJS 20.7.0"
+        render '/opt/homebrew/bin/render'
+            }
 
     stages {
         stage('Checkout Git') {
@@ -39,10 +42,16 @@ pipeline {
                     env.RENDER_ENVIRONMENT = 'development'
                     env.RENDER_BRANCH = 'master'
 
+                    // // Deploy to Render using Render CLI
+                    // sh """
+                    // render login --token "${RENDER_API_TOKEN}"
+                    // render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
+                    // """
+
                     // Deploy to Render using Render CLI
                     sh """
-                    render login --token "${RENDER_API_TOKEN}"
-                    render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
+                    $TOOL_HOME/render login --token "${RENDER_API_TOKEN}"
+                    $TOOL_HOME/render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
                     """
                 }
             }
