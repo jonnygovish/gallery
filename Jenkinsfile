@@ -55,7 +55,7 @@ pipeline {
                     def buildId = currentBuild.number
 
                     // Define the Render URL
-                    def renderUrl = 'https: //my-week-2-ip-1-web-service.onrender.com/'
+                    def renderUrl = 'https://my-week-2-ip-1-web-service.onrender.com/'
                     // Message text with Build ID and Render link
                     def message = "Deployment to Render completed successfully. (Build ID: ${buildId}).\nRender: ${renderUrl}"
                     // Send a notification to Slack via the Incoming WebHooks Integration
