@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         nodejs "NodeJS 20.7.0"
-            }
+    }
 
     stages {
         stage('Checkout Git') {
@@ -11,7 +11,7 @@ pipeline {
                 checkout scm
             }
         }
-        
+
         stage('Check version') {
             steps {
                 sh 'node -v'
@@ -25,9 +25,9 @@ pipeline {
                 sh 'npm install'
             }
         }
-        
+
         stage('Run Test') {
-            steps { 
+            steps {
                 sh 'npm test'
             }
         }
@@ -42,10 +42,8 @@ pipeline {
                     env.RENDER_BRANCH = 'master'
 
                     // Deploy to Render using Render CLI
-                    sh """
-                    /opt/homebrew/bin/render login "${RENDER_API_TOKEN}"
-                    /opt/homebrew/bin/render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
-                    """
+                    sh "/opt/homebrew/bin/render login --token \"${env.RENDER_API_TOKEN}\""
+                    sh "/opt/homebrew/bin/render up --environment \"${env.RENDER_ENVIRONMENT}\" --service \"${env.RENDER_SERVICE_NAME}\" --branch \"${env.RENDER_BRANCH}\""
                 }
             }
         }
@@ -60,6 +58,7 @@ pipeline {
                     def renderUrl = 'https://my-week-2-ip-1-web-service.onrender.com/'
                     // Message text with Build ID and Render link
                     def message = "Deployment to Render completed successfully. (Build ID: ${buildId}).\nRender: ${renderUrl}"
+
                     // Send a notification to Slack via the Incoming WebHooks Integration
                     sh """
                     curl -X POST --data-urlencode 'payload={
@@ -67,7 +66,8 @@ pipeline {
                         "username": "notificationbot",
                         "text": "${message}",
                         "icon_emoji": ":tada:"
-                    }' https: //hooks.slack.com/services/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 """
+                    }' https://hooks.slack.com/services/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
+                    """
                 }
             }
         }
