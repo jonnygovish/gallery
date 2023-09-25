@@ -37,12 +37,8 @@ pipeline {
                 script {
                     // Set Render API token as an environment variable
                     env.RENDER_SERVICE_NAME = 'My-Week-2-IP-1-Web-Service'
-                    env.RENDER_API_TOKEN = credentials('rnd_Jz7kRdcG2LFXQ0UlxqUTp5sBwG4k')
                     env.RENDER_ENVIRONMENT = 'development'
                     env.RENDER_BRANCH = 'master'
-
-                    // Configure Render CLI (this will prompt for login)
-                    sh "/opt/homebrew/bin/render config init"
 
                     // Deploy to Render
                     sh "/opt/homebrew/bin/render up --environment '${env.RENDER_ENVIRONMENT}' --service '${env.RENDER_SERVICE_NAME}' --branch '${env.RENDER_BRANCH}'"
