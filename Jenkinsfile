@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         nodejs "NodeJS 20.7.0"
-        render '/opt/homebrew/bin/render'
+        render "/opt/homebrew/bin/render"
             }
 
     stages {
