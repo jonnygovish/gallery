@@ -3,7 +3,6 @@ pipeline {
 
     tools {
         nodejs "NodeJS 20.7.0"
-        render "/opt/homebrew/bin/render"
             }
 
     stages {
@@ -50,8 +49,8 @@ pipeline {
 
                     // Deploy to Render using Render CLI
                     sh """
-                    $TOOL_HOME/render login --token "${RENDER_API_TOKEN}"
-                    $TOOL_HOME/render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
+                    /opt/homebrew/bin/render login --token "${RENDER_API_TOKEN}"
+                    /opt/homebrew/bin/render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
                     """
                 }
             }
