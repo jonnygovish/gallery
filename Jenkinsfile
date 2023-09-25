@@ -41,14 +41,13 @@ pipeline {
 
                     // Deploy to Render using Render CLI
                     sh """
-                    render login --token $$RENDER_API_TOKEN
-                    render up --environment $$RENDER_ENVIRONMENT --service $$RENDER_SERVICE_NAME --branch $$RENDER_BRANCH
+                    render login --token "${RENDER_API_TOKEN}"
+                    render up --environment "${RENDER_ENVIRONMENT}" --service "${RENDER_SERVICE_NAME}" --branch "${RENDER_BRANCH}"
                     """
                 }
             }
         }
-
-        
+       
         stage('Send a Notification to Slack') {
             steps {
                 script {
