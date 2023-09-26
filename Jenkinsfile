@@ -25,20 +25,20 @@ pipeline {
             }
         }
 
-        stage('Deploy web service to Render') {
+        stage('Deploy to Render') {
             steps {
                 script {
                     // Set Render API token as an environment variable
-                    env.RENDER_SERVICE_NAME = 'My-Week-2-IP-1-Web-Service'
                     env.RENDER_API_TOKEN = credentials('rnd_Jz7kRdcG2LFXQ0UlxqUTp5sBwG4k')
+                    env.RENDER_SERVICE_NAME = 'My-Week-2-IP-1-Web-Service'
                     env.RENDER_ENVIRONMENT = 'development'
                     env.RENDER_BRANCH = 'master'
 
-                    // Deploy to Render using Render CLI
-                    sh """
-                    render login --token $RENDER_API_TOKEN
-                    render up --environment $RENDER_ENVIRONMENT --service $RENDER_SERVICE_NAME --branch $RENDER_BRANCH
-                    """
+                    // Login to Render
+                    sh "render login --token ${env.RENDER_API_TOKEN}"
+
+                    // Deploy to Render
+                    sh "render up --environment ${env.RENDER_ENVIRONMENT} --service ${env.RENDER_SERVICE_NAME} --branch ${env.RENDER_BRANCH}"
                 }
             }
         }
