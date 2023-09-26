@@ -54,7 +54,7 @@ pipeline {
     post {
         success {
             script {
-                slackSend(channel: "maureen_ip1", message: "my-first-pipeline-slack passed successfully")
+                slackSend(channel: "maureen_ip1", message: "Deployment to Render completed successfully")
             }
         }
 
