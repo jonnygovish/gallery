@@ -14,9 +14,9 @@ pipeline {
             }
         }
 
-        stage('Build and Deploy') {
+        stage('Test') {
             steps {
-                sh 'node server'
+                sh 'npm test'
             }
         }
     }
