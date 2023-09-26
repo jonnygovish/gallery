@@ -6,9 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Git') {
+        stage('Clone repository') {
             steps {
-                checkout scm
+                git 'https://github.com/momureithi/My-Week-2-IP-1-Project'
             }
         }
 
