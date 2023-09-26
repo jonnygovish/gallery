@@ -32,7 +32,7 @@ pipeline {
             }
         }
 
-        stage('Deploy Web Service to Render') {
+        stage('Deploy web service to Render') {
             steps {
                 script {
                     // Set Render API token as an environment variable
@@ -43,8 +43,8 @@ pipeline {
 
                     // Deploy to Render using Render CLI
                     sh """
-                    export RENDER_API_TOKEN="${env.RENDER_API_TOKEN}"
-                    /opt/homebrew/bin/render up --branch "${env.RENDER_BRANCH}" --name "${env.RENDER_SERVICE_NAME}"
+                    render login --token $RENDER_API_TOKEN
+                    render up --environment $RENDER_ENVIRONMENT --service $RENDER_SERVICE_NAME --branch $RENDER_BRANCH
                     """
                 }
             }
