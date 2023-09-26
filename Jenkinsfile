@@ -42,7 +42,7 @@ pipeline {
                         "username": "notificationbot",
                         "text": "\${message}",
                         "icon_emoji": ":tada:"
-                    }' https://hooks.slack.com/services/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
+                    }' https://hooks.slack.com/services/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
                     """
                 }
             }
