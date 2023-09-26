@@ -25,34 +25,6 @@ pipeline {
             }
         }
 
-        stage('Deploy to Render') {
-            steps {
-                script {
-                    // Bind the Render API token credential
-                    def renderApiToken = credentials('render-api-token')
-
-                    // Debug: Print the API token to verify it's loaded correctly
-                    echo "Render API Token: ${renderApiToken}"
-
-                    // Set Render API token as an environment variable
-                    env.RENDER_SERVICE_NAME = 'My-Week-2-IP-1-Web-Service'
-                    env.RENDER_ENVIRONMENT = 'development'
-                    env.RENDER_BRANCH = 'master'
-
-                    // Debug: Print environment variables
-                    echo "Service Name: ${env.RENDER_SERVICE_NAME}"
-                    echo "Environment: ${env.RENDER_ENVIRONMENT}"
-                    echo "Branch: ${env.RENDER_BRANCH}"
-
-                    // Login to Render using the credential
-                    sh "render login --token ${renderApiToken}"
-
-                    // Deploy to Render
-                    sh "render up --environment ${env.RENDER_ENVIRONMENT} --service ${env.RENDER_SERVICE_NAME} --branch ${env.RENDER_BRANCH}"
-                }
-            }
-        }
-
         stage('Send a Notification to Slack') {
             steps {
                 script {
