@@ -54,12 +54,15 @@ pipeline {
     post {
         success {
             script {
-                slackSend(channel: "maureen_ip1", message: "Deployment to Render completed successfully")
+                def buildId = currentBuild.number
+                def renderUrl = 'https://my-week-2-ip-1-web-service.onrender.com/'
+                def message = "Deployment to Render completed successfully. (Build ID: ${buildId}).\nRender: ${renderUrl}"
+                slackSend(channel: "maureen_ip1", message: "${message}")
             }
         }
 
         failure {
-          echo "One or more steps need to be included within each condition's block."
+          echo "Deployment to Render has failed."
         }
     }
 }
