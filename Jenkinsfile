@@ -47,5 +47,18 @@ pipeline {
                 }
             }
         }
+
+        post {
+        success {
+            script {
+                slackSend(channel: "maureen_ip1", message: "my-first-pipeline-slack passed successfully")
+            }
+        }
+
+        failure {
+          echo "One or more steps need to be included within each condition's block."
+        }
+    }
+        
     }
 }
