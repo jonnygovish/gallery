@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    tool {nodejs "Node"}
     stages {
         stage('Clone the repo') {
             steps {
@@ -13,10 +13,16 @@ pipeline {
                 sh 'npm install'
             }
         }
-
+        
         stage('Test') {
             steps {
                 sh 'npm test'
+            }
+        }
+
+        stage ('Deploy to Render'){
+            steps{
+                sh 'curl $RENDER_DEPLOY_HOOK'
             }
         }
     }
