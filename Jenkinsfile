@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('clone-repo'){
             steps{
-                 git clone  branch:'master',url:'https://github.com/Chege2004/gallery.git'
+                 git branch:'master',url:'https://github.com/Chege2004/gallery.git'
                  slacksend message: 'Successful cloning'
             }
         }
