@@ -2,11 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
-<<<<<<< HEAD
-const config = require('./_config')
-=======
 const config = require('./_config');
->>>>>>> origin/test
 
 // Define routes
 let index = require('./routes/index');
