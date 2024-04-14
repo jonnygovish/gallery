@@ -16,12 +16,10 @@ let image = require('./routes/image');
 const app = express();
 
 // connecting the database
-<<<<<<< HEAD
 let mongodb_url = 'mongodb://localhost:27017/';
 let dbName = 'darkroom';
 mongoose.connect(config.mongoURI.development,{ useNewUrlParser: true , useUnifiedTopology: true }, (err)=>{
     if (err) console.log(err)
-=======
 
 const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
@@ -30,7 +28,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
     }else{
         console.log(`Connected to Database: ${MONGODB_URI}`)
     }
->>>>>>> origin/test
 });
 
 // test if the database has connected successfully
