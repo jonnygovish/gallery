@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    tool {nodejs "Node"}
+    stages {
+        stage('Clone the repo') {
+            steps {
+                git 'https://github.com/PitaKibunja/gallery.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
+        stage ('Deploy to Render'){
+            steps{
+                sh 'curl $RENDER_DEPLOY_HOOK'
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+services:
+ - type: web
+   name: my
+   runtime: node
+   repo:
+   region: oregon
+   plan: free
+   branch: master
+   rootDir: .
+   buildCommand: npm install
+   startCommand: 
