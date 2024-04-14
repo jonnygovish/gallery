@@ -24,7 +24,7 @@ pipeline {
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS')]) {
                     /* groovylint-disable-next-line GStringExpressionWithinString */
-                    sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/agile-cliffs-13080.git master'
+                    sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/safe-lake-60363.git master'
                 }
             }
         }

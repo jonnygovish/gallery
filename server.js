@@ -13,7 +13,7 @@ const app = express();
 
 // connecting the database
 
-const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
+const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI.production
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
     if (err) {
         console.log(err)
@@ -23,10 +23,10 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 });
 
 // test if the database has connected successfully
-// let db = mongoose.connection;
-// db.once('open', ()=>{
-//     console.log('Database connected successfully')
-// })
+let db = mongoose.connection;
+db.once('open', () => {
+    console.log('Database connected successfully')
+})
 
 
 
@@ -46,9 +46,9 @@ app.use('/image', image);
 
 
 
- 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT,() =>{
+
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
     console.log(`Server is listening at http://localhost:${PORT}`)
 });
 
