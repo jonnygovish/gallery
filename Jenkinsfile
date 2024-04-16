@@ -17,12 +17,12 @@ pipeline{
         stage('test-project'){
             steps{
                 sh 'npm test'
-            }
-            post{
+            }   
+        }
+    post{
                 failure{
                     slacksend message 'failed'
             }
         }
     }
-}
 }
