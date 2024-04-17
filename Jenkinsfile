@@ -19,10 +19,5 @@ pipeline{
                 sh 'npm test'
             }   
         }
-    post{
-                failure{
-                    slacksend message 'failed'
-            }
-        }
     }
 }
