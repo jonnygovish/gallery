@@ -19,5 +19,15 @@ pipeline{
                 sh 'npm test'
             }   
         }
+        post{
+            always{
+                echo 'Slack Notifications'
+                SlackSend(
+                    channel:'#manasseh_ip1',
+                    color:COLOR_MAP[currentBuild.currentResult],
+                    message:''$(currentBuild.currentResult):*job $[env.JOB_NAME] \n more info at:$(env.BUILD_URI)
+                )
+            }
+        }
     }
 }
