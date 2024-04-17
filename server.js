@@ -12,7 +12,8 @@ let image = require('./routes/image');
 const app = express();
 
 // connecting the database
-
+let mongodb_url = 'mongodb://localhost:27017/';
+let dbName = 'darkroom';
 const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
     if (err) {
