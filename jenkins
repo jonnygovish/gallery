@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    triggers {
+        pollSCM('* * * * *') // This checks for changes every minute
+        // Alternatively, you can use GitHub hook trigger
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Nyagah01-ops/gallery
+                '
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Deploy to Render') {
+            steps {
+                sh 'node server'
+            }
+        }
+
+        stage('Update Landing Page') {
+            steps {
+                script {
+                    def file = readFile 'path/to/your/landing/page.html'
+                    file = file.replace('<!-- MILESTONE_PLACEHOLDER -->', '<h1>MILESTONE 2</h1>')
+                    writeFile file: 'path/to/your/landing/page.html', text: file
+                }
+            }
+        }
+
+        stage('Push Changes') {
+            steps {
+                sh 'git add .'
+                sh 'git commit -m "Update landing page with MILESTONE 2"'
+                sh 'git push origin main'
+            }
+        }
+    }
+}
