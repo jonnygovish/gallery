@@ -19,6 +19,11 @@ pipeline {
                 sh 'npm install'
             }
         }
+        stage('Npm Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
         stage('Run Application') {
             steps {
                 sh 'nohup node server.js &'
