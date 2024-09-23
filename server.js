@@ -8,11 +8,17 @@ let index = require('./routes/index');
 let image = require('./routes/image');
 
 // connecting the database
-let mongodb_url = 'mongodb://localhost:27017/';
+// let mongodb_url = 'mongodb://localhost:27017/';
+let mongodb_url = 'mongodb+srv://eldad:Mwangi10835@darkroom.ipuj2.mongodb.net/?retryWrites=true&w=majority&appName=darkroom';
 let dbName = 'darkroom';
-mongoose.connect(`${mongodb_url}${dbName}`,{ useNewUrlParser: true , useUnifiedTopology: true }, (err)=>{
-    if (err) console.log(err)
-});
+mongoose.connect(`${mongodb_url}${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('Database connected successfully');
+    })
+    .catch(err => {
+        console.error('MongoDB connection error:', err);
+    });
+
 
 // test if the database has connected successfully
 let db = mongoose.connection;
@@ -40,7 +46,9 @@ app.use('/image', image);
 
 
  
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT,() =>{
     console.log(`Server is listening at http://localhost:${PORT}`)
 });
+
+module.exports = app;
