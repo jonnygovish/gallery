@@ -22,14 +22,14 @@ pipeline {
         stage('Notify Slack') {
             steps {
                 script {
-                    slackSend(channel: '#YourFirstName_IP1', message: "Build successful! Visit: ${env.RENDER_URL}")
+                    slackSend(channel: '#catherline_IP1', message: "Build successful! Visit: ${env.RENDER_URL}")
                 }
             }
         }
     }
     post {
         failure {
-            mail to: 'your-email@example.com',
+            mail to: 'catemirobe@gmail.com',
                  subject: "Build Failed: ${currentBuild.fullDisplayName}",
                  body: "Something is wrong with ${env.JOB_NAME} ${env.BUILD_NUMBER}"
         }
