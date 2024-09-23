@@ -12,6 +12,13 @@ pipeline {
                 }
             }
         }
+        stage('Run Tests') {
+    steps {
+        script {
+            sh 'npm test'
+        }
+    }
+}
         stage('Deploy to Render') {
             steps {
                 script {
