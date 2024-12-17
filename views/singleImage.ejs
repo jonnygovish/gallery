@@ -60,24 +60,26 @@
                     <a class="waves-effect waves-light btn red right" id="delete" data-id="<%= image._id %>"><i class="material-icons left">delete</i>Delete Image</a>
                   <!-- Modal Body -->
                   <div id="modal1" class="modal">
-                      <div class="modal-content">
+                    <div class="modal-content">
                       <h4>Update Image Information: </h4>
                       <div class="col s6">
-                          <form action="/image/<%= image._id %>" method="" data-id="<%= image.id %>" class="">
-                      <div class="row">
-                        <div class="input-field col s12">
-                            <input id="_id" type="text"  value="<%= image.name %>">
-                            <label for="image_title">Image Name</label>
-                        </div>
-                        <div class="input-field col s12">
-                        <button type="submit"  class="waves-effect waves-light btn-large">Update</button>
-                        </div>
+                        <form action="/image/<%= image._id %>" method="" data-id="<%= image.id %>" class="">
                           
-                      </div>	
-                      </form>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input id="_id" type="text" value="<%= image.name %>">
+                              <label for="image_title">Image Name</label>
+                            </div>
+                            <div class="input-field col s12">
+                              <button type="submit" class="waves-effect waves-light btn-large">Update</button>
+                            </div>
+                          </div>
+
+                        </form>
                       </div>
-                      </div>
+                    </div>
                   </div> 
+                  <!-- Modal End -->
                 </div>
               </div>
             </div>
