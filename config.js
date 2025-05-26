@@ -1,6 +1,6 @@
-const mongoURI = 'mongodb+srv://conquest:Db25bumBum@cluster0.zksscer.mongodb.net/gallery?retryWrites=true&w=majority';
-
 const config = {};
+
+const mongoURI = 'mongodb+srv://conquest:db_25bumBum%23@cluster0.zksscer.mongodb.net/gallery?retryWrites=true&w=majority';
 
 config.mongoURI = {
   production: mongoURI,
@@ -9,4 +9,3 @@ config.mongoURI = {
 };
 
 module.exports = config;
-
