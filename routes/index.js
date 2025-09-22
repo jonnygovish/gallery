@@ -8,15 +8,14 @@ let Image = require('../models/images');
 
 var db = []
 
-router.get('/', function (req, res) {
-    Image.find({}, function (err, images) {
-        if (err) {
-            console.log(err);
-            res.render('index', { images: [] });  // should fall back to empty array
-        } else {
-            res.render('index', { images: images });
-        }
-    });
+router.get('/', async (req, res) => {
+  try {
+    const images = await Image.find();
+    res.render('index', { images: images || [] });
+  } catch (error) {
+    console.error('Database error:', error);
+    res.render('index', { images: [] }); // Pass empty array as fallback
+  }
 });
 
 
