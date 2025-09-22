@@ -7,20 +7,18 @@ const path = require('path');
 let index = require('./routes/index');
 let image = require('./routes/image');
 
-// connecting the database - FIXED VERSION
-// Use MongoDB Atlas connection string from environment variable, fallback to localhost for development
 const mongodb_url = process.env.MONGODB_URI || 'mongodb://localhost:27017/darkroom';
 
-mongoose.connect(mongodb_url, { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
+mongoose.connect(mongodb_url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
-.then(() => {
-    console.log('Connected to MongoDB successfully');
-})
-.catch((err) => {
-    console.error('MongoDB connection error:', err);
-});
+    .then(() => {
+        console.log('Connected to MongoDB successfully');
+    })
+    .catch((err) => {
+        console.error('MongoDB connection error:', err);
+    });
 
 // test if the database has connected successfully
 let db = mongoose.connection;
