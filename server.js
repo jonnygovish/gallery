@@ -42,11 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // body parser middleware
 app.use(express.json());
 
-// Use routes
-app.use('/', index);
-app.use('/image', image);
-
-// 👇 Add MILESTONE 2 on landing page
+// 👇 Add MILESTONE 2 on landing page (put this BEFORE other routes)
 app.get("/", (req, res) => {
     res.send(`
     <html>
@@ -57,7 +53,13 @@ app.get("/", (req, res) => {
   `);
 });
 
+// Use routes (these will handle other paths)
+app.use('/', index);
+app.use('/image', image);
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is listening at http://localhost:${PORT}`);
+
+// Fix: Bind to 0.0.0.0 for external access on Render
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is listening on port ${PORT}`);
 });
