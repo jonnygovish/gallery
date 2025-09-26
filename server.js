@@ -42,12 +42,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // body parser middleware
 app.use(express.json());
 
-// 👇 Add MILESTONE 2 on landing page (put this BEFORE other routes)
+// 👇 Add MILESTONE 4 on landing page (updated from MILESTONE 2)
 app.get("/", (req, res) => {
     res.send(`
     <html>
       <body style="text-align:center; margin-top:50px;">
-        <h1 style="font-size:48px; color:red;">MILESTONE 2</h1>
+        <h1 style="font-size:48px; color:red;">MILESTONE 4</h1>
+        <p>Build ID: ${process.env.BUILD_NUMBER || 'Local Development'}</p>
+        <p>Deployed successfully!</p>
       </body>
     </html>
   `);
@@ -57,10 +59,16 @@ app.get("/", (req, res) => {
 app.use('/', index);
 app.use('/image', image);
 
+// CRITICAL FIX: Get the PORT correctly
 const PORT = process.env.PORT || 5000;
 
-// Fix: Bind to 0.0.0.0 for external access on Render
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server is listening on port ${PORT}`);
+// CORRECT way to bind to port for Render
+app.listen(PORT, '0.0.0.0', (err) => {
+    if (err) {
+        console.error('Failed to start server:', err);
+        process.exit(1);
+    }
+    console.log(`🚀 Server is listening on port ${PORT}`);
+    console.log(`📍 Host: 0.0.0.0 (external access enabled)`);
+    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
 });
-
