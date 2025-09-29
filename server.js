@@ -41,34 +41,83 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // body parser middleware
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// 👇 Add MILESTONE 4 on landing page (updated from MILESTONE 2)
+// Landing page with ALL milestones
 app.get("/", (req, res) => {
     res.send(`
+    <!DOCTYPE html>
     <html>
-      <body style="text-align:center; margin-top:50px;">
-        <h1 style="font-size:48px; color:red;">MILESTONE 4</h1>
-        <p>Build ID: ${process.env.BUILD_NUMBER || 'Local Development'}</p>
-        <p>Deployed successfully!</p>
+      <head>
+        <title>Gallery App - IP1 Project</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+          }
+          .milestone {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+          }
+          h1 { font-size: 48px; margin: 20px 0; }
+          h2 { font-size: 32px; color: #ffd700; }
+          p { font-size: 18px; margin: 10px 0; }
+          .success { color: #00ff00; font-weight: bold; }
+        </style>
+      </head>
+      <body>
+        <h1>🎉 IP1 Gallery Project</h1>
+        
+        <div class="milestone">
+          <h2>✅ MILESTONE 1: Version Control</h2>
+          <p class="success">Git repository created and managed</p>
+        </div>
+        
+        <div class="milestone">
+          <h2>✅ MILESTONE 2: CI/CD Pipeline</h2>
+          <p class="success">Jenkins pipeline configured</p>
+          <p>Automated build and deployment</p>
+        </div>
+        
+        <div class="milestone">
+          <h2>✅ MILESTONE 3: Testing & Email</h2>
+          <p class="success">Tests implemented with Mocha/Chai</p>
+          <p>Email notifications on test failures</p>
+        </div>
+        
+        <div class="milestone">
+          <h2>✅ MILESTONE 4: Slack Integration</h2>
+          <p class="success">Slack notifications configured</p>
+          <p>Build ID: ${process.env.BUILD_NUMBER || 'Manual Deploy'}</p>
+        </div>
+        
+        <div class="milestone">
+          <p>🚀 <strong>Deployed on Render</strong></p>
+          <p>📦 Database: MongoDB Atlas</p>
+          <p>⚙️ CI/CD: Jenkins</p>
+        </div>
       </body>
     </html>
   `);
 });
 
-// Use routes (these will handle other paths)
+// Use other routes
+app.use('/images', image);
 app.use('/', index);
-app.use('/image', image);
 
-// CRITICAL FIX: Get the PORT correctly
+// Get PORT from environment (Render provides this automatically)
 const PORT = process.env.PORT || 5000;
 
-// CORRECT way to bind to port for Render
-app.listen(PORT, '0.0.0.0', (err) => {
-    if (err) {
-        console.error('Failed to start server:', err);
-        process.exit(1);
-    }
-    console.log(`🚀 Server is listening on port ${PORT}`);
-    console.log(`📍 Host: 0.0.0.0 (external access enabled)`);
-    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+// Start server - CRITICAL: bind to 0.0.0.0 for external access
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
