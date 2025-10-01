@@ -11,10 +11,10 @@ let Image = require('../models/images');
 router.get('/', async (req, res) => {
   try {
     const images = await Image.find();
-    res.render('index', { images: images || [] });
+    res.render('index', { images: images || [], msg: null });
   } catch (error) {
     console.error('Database error:', error);
-    res.render('index', { images: [] }); // Pass empty array as fallback
+    res.render('index', { images: [], msg: null }); // Pass empty array as fallback
   }
 });
 
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 router.post('/upload', (req, res) => {
     upload(req, res, (err) => {
         if (err) {
-            res.redirect(`/?msg=${err}`);
+           res.redirect(`/?msg=${err}`);
         } else {
             console.log(req.file);
             // res.send("test");
