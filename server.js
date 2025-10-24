@@ -1,46 +1,44 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+require('dotenv').config({ path: '.env' });
 
-// Define routes
-let index = require('./routes/index');
-let image = require('./routes/image');
+const index = require('./routes/index');
+const image = require('./routes/image');
 
-// connecting the database
-let mongodb_url = 'mongodb://localhost:27017/';
-let dbName = 'darkroom';
-mongoose.connect(`${mongodb_url}${dbName}`,{ useNewUrlParser: true , useUnifiedTopology: true }, (err)=>{
-    if (err) console.log(err)
-});
+const {
+  MONGOUSER: username,
+  MONGOPASSWORD: userpassword,
+  MONGOHOST: mongocluster,
+  MONGOPRODUCTIONDATABASE: prod_env,
+} = process.env;
 
-// test if the database has connected successfully
-let db = mongoose.connection;
-db.once('open', ()=>{
-    console.log('Database connected successfully')
-})
-
-// Initializing the app
 const app = express();
 
-
-// View Engine
 app.set('view engine', 'ejs');
-
-// Set up the public folder;
 app.use(express.static(path.join(__dirname, 'public')));
-
-// body parser middleware
-app.use(express.json())
-
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/', index);
 app.use('/image', image);
 
+if (process.env.NODE_ENV !== 'test') {
+  if (!username || !userpassword || !mongocluster || !prod_env) {
+    console.error("Missing MongoDB environment variables.");
+    process.exit(1);
+  }
+
+  const mongoURI = `mongodb+srv://${username}:${userpassword}@${mongocluster}/${prod_env}?retryWrites=true&w=majority`;
 
 
- 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT,() =>{
-    console.log(`Server is listening at http://localhost:${PORT}`)
-});
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log(`Connected to Database: ${mongoURI}`))
+  .catch(err => console.error("MongoDB connection failed:", err));
+
+  const PORT = process.env.PORT || 50000;
+  app.listen(PORT, () => {
+    console.log(`Server is listening at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
