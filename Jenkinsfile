@@ -1,25 +1,11 @@
 pipeline {
     agent any
 
-    triggers {
-        githubPush()   // Auto-build on every push
+    tools {
+        nodejs "node18"
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Install Node') {
-            steps {
-                sh '''
-                    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-                    sudo apt-get install -y nodejs
-                '''
-            }
-        }
 
         stage('Install Dependencies') {
             steps {
@@ -27,10 +13,19 @@ pipeline {
             }
         }
 
+        stage('Build') {
+            steps {
+                sh 'npm run build || echo "No build script"'
+            }
+        }
+
         stage('Deploy to Render') {
             steps {
-                sh 'curl -X POST $RENDER_DEPLOY_WEBHOOK'
+                sh '''
+                curl -X POST "$RENDER_DEPLOY_HOOK"
+                '''
             }
         }
     }
 }
+
