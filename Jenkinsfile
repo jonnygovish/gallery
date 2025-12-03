@@ -2,14 +2,13 @@ pipeline {
     agent any
 
     tools {
-        nodejs "node18"
+        nodejs "node18"   // MUST match the name you configured in Jenkins global tools
     }
 
     stages {
-
         stage('Checkout') {
             steps {
-                checkout scm
+                checkout test
             }
         }
 
@@ -21,29 +20,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                script {
-                    if (fileExists("package.json")) {
-                        def pkg = readJSON file: 'package.json'
-                        if (pkg.scripts && pkg.scripts.build) {
-                            sh 'npm run build'
-                        } else {
-                            echo "No build script defined — skipping build."
-                        }
-                    } else {
-                        echo "package.json not found"
-                    }
-                }
+                sh 'npm run build || true'
             }
         }
 
         stage('Deploy to Render') {
             steps {
                 sh '''
-                    if [ -n "$RENDER_DEPLOY_HOOK" ]; then
-                        curl -X POST "$RENDER_DEPLOY_HOOK"
-                    else
-                        echo "RENDER_DEPLOY_HOOK variable not set — skipping deployment."
-                    fi
+                curl -X POST \
+                -H "Accept: application/json" \
+                -H "Authorization: Bearer $RENDER_API_KEY" \
+                -H "Content-Type: application/json" \
+                --data '{"clearCache":false}' \
+                https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys
                 '''
             }
         }

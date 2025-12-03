@@ -7,3 +7,8 @@ config.mongoURI = {
     test: 'mongodb+srv://<USERNAME>:<PASSWORD>@gallery.wc344.mongodb.net/darkroom-test?retryWrites=true&w=majority',
 }
 module.exports = config;
+
+module.exports = {
+  mongoURI: "mongodb+srv://richmondmwangi1_db_user:mypasword@231@cluster0.ycs0ytj.mongodb.net/darkroom?retryWrites=true&w=majority&appName=Cluster0"
+};
+
