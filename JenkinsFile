@@ -1,0 +1,23 @@
+pipeline { 
+  agent any
+  tools { 
+    nodejs "NodeJs"
+  }
+  stages { 
+    stage('clone repo') {
+      steps { 
+        git 'https://github.com/Gikonyo-Otieno/gallery'
+      }
+    }
+    stage('Dependancy Installation') {
+      steps { 
+        sh 'npm install'
+      }
+    }
+    stage('Build') {
+      steps { 
+        sh 'node server.js'
+      }
+    }
+  }
+}
