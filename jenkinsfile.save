@@ -1,0 +1,45 @@
+pipeline {
+   agent any
+   stages {
+     stage ('build') {
+       ...
+}
+     stage ('test: intergration-&-quality') {
+       ...
+}
+
+
+     stage ('test: functional') {
+       ...
+ }
+     stage ('test: load-&_security') {
+        ...
+}
+     stage ('approval') {
+       ...
+
+}
+     stage ('deploy:prod') {
+       ...
+}
+steps {
+  sh 'echo "A one line step"'
+  sh ''''
+     echo " A multiline step"'
+
+
+
+}
+
+}
+
+
+}
+
+
+
+
+Q
+
+
+
